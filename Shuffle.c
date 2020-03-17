@@ -13,15 +13,19 @@ typedef struct{
 void CardInput(card_rec *card); 
 void CardShuffle(card_rec *card); 
 
+///カードを取得する topNum:山札の番号
+Card GetCard(int topNum){
 
-int main(void){
-
+	Card trump;
 	card_rec card[52]; //カード構造体を配列で定義
 
 	CardInput(card);	
 	CardShuffle(card);	
-	
-    return 0;
+
+	trump.number=(card+topNum)->number;
+	trump.mark=(card+topNum)->mark;
+
+	return trump;
 }
 
 ///カードに数字とマークを代入
@@ -74,6 +78,7 @@ void CardShuffle(card_rec *card){
 	}
 }
 
+///テスト用
 void CardOutput(card_rec *card,int hand){
 	int i;
 	for(i=0;i<52;i++){
