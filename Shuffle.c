@@ -17,7 +17,7 @@ void CardShuffle(card_rec *card);
 Card GetCard(int topNum){
 
 	Card trump;
-	card_rec card[52]; //カード構造体を配列で定義
+	card_rec card[CARD_MAX]; //カード構造体を配列で定義
 
 	CardInput(card);	
 	CardShuffle(card);	
@@ -30,13 +30,16 @@ Card GetCard(int topNum){
 
 ///カードに数字とマークを代入
 void CardInput(card_rec *card){
-	int i; 
-	for(i=0;i<52;i++){
+	int i;
+	int markValue=MARK_VALUE;		//柄ごとのカードの枚数 
+	int deckValue=CARD_MAX;		//山札の枚数
+
+	for(i=0;i<deckValue;i++){
 		
-		(card+i)->number=i%13+1; 
+		(card+i)->number=i%markValue+1; 
 		
 		//マークを代入
-		switch(i/13){ 
+		switch(i/markValue){ 
 			case 0:
 			(card+i)->mark='s';
 			break;
@@ -59,12 +62,13 @@ void CardInput(card_rec *card){
 ///カードをシャッフル
 void CardShuffle(card_rec *card){
 	int i,r,tmpNum; 
+	int deckValue=CARD_MAX;		//山札の枚数
 	char tmpMark;    
 	srand((unsigned)time(NULL)); 
 
-	for(i=0;i<52;i++){
+	for(i=0;i<deckValue;i++){
 
-		r=rand()%52; 
+		r=rand()%deckValue; 
 		
 		/*乱数で得た番号と配列の番号を入れ替え*/
 		tmpNum=(card+i)->number;
@@ -81,7 +85,9 @@ void CardShuffle(card_rec *card){
 ///テスト用
 void CardOutput(card_rec *card,int hand){
 	int i;
-	for(i=0;i<52;i++){
+	int deckValue=CARD_MAX;		//山札の枚数
+
+	for(i=0;i<deckValue;i++){
 		printf("%d %c\n",(card+i)->number,(card+i)->mark); 
 	}
 }
