@@ -9,9 +9,6 @@ typedef enum turnTag {
 }Turn;
 
 //プロトタイプ宣言
-void Win();
-void Lose();
-void Dlow();
 void Draw();
 void SwichTurn();
 void TortalOutput();
@@ -27,6 +24,7 @@ int playerValue=0;              //プレイヤーの手札の合計
 int enemyValue=0;               //相手
 int upperLimit = UPPER_LIMIT;   //ブラックジャックの上限
 
+///ブラックジャックメメイン
 int BlackJackMain(void){
     int hand = FIRST_HAND;          //初期手札の枚数  
 
@@ -179,7 +177,7 @@ void Judge(){
     if(playerValue==enemyValue || (playerValue>upperLimit && enemyValue>upperLimit)){
         printf("引き分け\n");
     }
-    else if((playerValue>21 && enemyValue<21) || (playerValue<21 && enemyValue<21 && playerValue<enemyValue)){
+    else if((playerValue>upperLimit && enemyValue<upperLimit) || (playerValue<upperLimit && enemyValue<upperLimit && playerValue<enemyValue)){
         printf("プレイヤーの負け\n");
     }
     else {
