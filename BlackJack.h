@@ -5,6 +5,6 @@
 #define UPPER_LIMIT 21
 #define ENEMY_LIMIT 15
 
-BlackJackMain();
+int BlackJackMain();
 
 #endif

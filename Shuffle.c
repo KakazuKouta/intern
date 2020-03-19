@@ -13,8 +13,10 @@ typedef struct{
 void CardInput(card_rec *card); 
 void CardShuffle(card_rec *card); 
 
+int topNum = 0;		//山札の一番上の番号
+
 ///カードを取得する topNum:山札の番号
-Card GetCard(int topNum){
+Card GetCard(){
 
 	Card trump;
 	card_rec card[CARD_MAX]; //カード構造体を配列で定義
@@ -24,6 +26,8 @@ Card GetCard(int topNum){
 
 	trump.number=(card+topNum)->number;
 	trump.mark=(card+topNum)->mark;
+
+	topNum++;
 
 	return trump;
 }

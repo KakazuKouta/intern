@@ -12,7 +12,7 @@ struct Card
 typedef struct Card Card;
 
 
-Card GetCard(int topNum);
+Card GetCard();
 
 
 #endif
